@@ -16,33 +16,32 @@
         //         }
         //     }
         // }
-        function mostrar(){
-            foreach ($_POST as $key => $value) {
-                if($key!="nom" && $key!="env"){
-                    if($value<0 && $value>10){
-                        echo "Incorrecto";
-                    }else{
-                        $mensaje="";
-                        if($value>=0 && $value<5){
-                            $mensaje="Insuficiente";
-                        }else if($value==5){
-                            $mensaje="Suficiente";
-                        }else if($value>5 && $value<7){
-                            $mensaje="Bien";
-                        }else if($value>=7 && $value<=8){
-                            $mensaje="Notable";
-                        }else{
-                            $mensaje="Sobresaliente";
-                        }
-                    }
+        function mostrar($nombre,$notas){
+            echo "<table><tr><th>Alumno</th><th>$nombre</th></tr>";
+            foreach ($notas as $key => $value) {              
+                $mensaje="";
+                if($value>=0 && $value<5){
+                    $mensaje="Insuficiente";
+                }else if($value==5){
+                    $mensaje="Suficiente";
+                }else if($value>5 && $value<7){
+                    $mensaje="Bien";
+                }else if($value>=7 && $value<=8){
+                    $mensaje="Notable";
+                }else{
+                    $mensaje="Sobresaliente";
+                }
 
-                    echo "<table><th>hola</th></table>";
+
+                if($key!="nom" && $key!="env"){
+                    echo "<tr><td>$key</td><td>$mensaje</td></tr>";
                 }
             }
+            echo "</table>";
         }
 
 
-        mostrar();
+        mostrar($_POST["nom"],$_POST);
         
       }else{
         echo '
