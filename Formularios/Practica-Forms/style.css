@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "system-ui";
+    background-color:rgb(35, 35, 35);
+    color:white;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+    /* FORMULARIO */
+.form-container{
+    border:0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    /* box-shadow: 0px -20px 0px 0px rgb(123, 175, 230); */
+    box-shadow: 0px -20px 0px 0px rgb(123, 175, 230),
+    0 0 10px rgba(0, 0, 0, 0.4), /* Resplandor cercano */
+    0 0 25px 1px rgba(0, 0, 0, 0.5); /* Color secundario del resplandor */
+    width: 30%;
+    margin: 5%;
+    padding:30px;
+    align-items: center;
+}
+
+form input[type="text"]{
+    background-color: transparent;
+    border-bottom:none;
+    border-right: none;
+    box-shadow: 10px 5px 11px rgb(14, 14, 14),
+     -0px -1px 10px rgba(112, 112, 112, 0.5);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;   
+    color: white !important;
+}
+
+form input[type="file"]{
+    background-color: transparent;
+    border-bottom:none;
+    border-right: none;
+    box-shadow: 10px 5px 11px rgb(14, 14, 14),
+     -0px -1px 10px rgba(112, 112, 112, 0.5);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    text-align: center; 
+}
+
+form input[type="radio"]{
+   margin-left: 10px;
+}
+
+form input[type="submit"]{
+    background-color: transparent;
+    border-bottom:none;
+    border-right: none;
+    box-shadow: 10px 5px 11px rgb(14, 14, 14),
+     -0px -1px 10px rgba(112, 112, 112, 0.5);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;  
+    color: white;
+}
+
+
+    /* TABLA */
+div{
+    width: 50%;
+    text-align: center;
+    margin-top: 50px;
+}
+table{
+    border:0.5px solid rgb(255, 255, 255);
+    border-collapse:collapse;
+    margin: auto;
+    font-size: 20px;
+    width: 60%;
+}
+
+td{
+    border:solid 0.5px rgb(255, 255, 255);
+}
+
+th{
+    border:solid 0.5px rgb(255, 255, 255);
+}
