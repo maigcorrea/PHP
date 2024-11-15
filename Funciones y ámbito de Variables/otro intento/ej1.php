@@ -16,6 +16,14 @@
 
         $saludo="hola mundo";
         corregir_primera_letra($saludo);
+
+        function corregir_mayusculas(&$cad){
+            corregir_primera_letra($cad);
+
+            //Sacar la longitud de la cadena e ir recorriendola
+            $tope=strlen($cad);
+            for()
+        }
     ?>
 </body>
 </html>
