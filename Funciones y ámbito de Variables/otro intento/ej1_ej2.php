@@ -24,7 +24,9 @@
             //Sacar la longitud de la cadena e ir recorriendola
             $tope=strlen($cad);
             for($i=1;$i<$tope;$i++){//Se empieza desde 1 porque la pos 0 es la primera letra(la que va en mayúscula)
-                $cad[$i]=strtolower($cad[$i]);
+                if(preg_match("'[A-Z]'",$cad[$i])){//Si la letra es mayúscula, se convierte a minúscula
+                    $cad[$i]=strtolower($cad[$i]);
+                }
             }
             return $cad;
         }
