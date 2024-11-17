@@ -62,19 +62,50 @@
             return "La cadena contiene $cont mayúscula(s)";
         }
 
+        //EJ 5
+        function contar_letra($cad,$char,$sensitive=true){
+            if(strlen($char)==1){
+                if($sensitive=="false"){
+                    $cad=strtolower($cad);
+                    if(preg_match("'[A-Z]'",$char)){
+                        $char=strtolower($char);
+                    }
+                }
+
+                $cont=0;
+                $tope=strlen($cad);
+
+                for($i=0;$i<$tope;$i++){
+                    if($cad[$i]==$char){
+                        $cont++;
+                    }
+                }
+
+                return "La cadena tiene $cont '$char'";
+            }else{
+                return "Se debe introducir 1 caracter";
+            }
+        }
+
 
         if(isset($_POST["env"])){
         
             // echo(corregir_primera_letra($_POST["cad"]));
             // echo(corregir_mayusculas($_POST["cad"]));
             // echo(contar_letra_a($_POST["cad"]));
-            echo (contar_mayusculas($_POST["cad"]));
+            // echo (contar_mayusculas($_POST["cad"]));
+            echo contar_letra($_POST["cad"],$_POST["char"],$_POST["case"]);
 
         }else{
             echo '
                  <form action="#" method="post" enctype="multipart/form-data">
                     <label for="cad">Indica una cadena de texto:</label><br>
                     <input type="text" name="cad" id=""><br>
+                    <label for="char">Indica un caracter</label><br>
+                    <input type="text" name="char" id=""><br>
+                    <label for="case">Quieres que la función sea case sensitive?</label><br>
+                    No<input type="radio" name="case" value="false"><br>
+                    Si<input type="radio" name="case" value="true"><br>
                     <input type="submit" name="env" value="Enviar">
                 </form>    
             ';
