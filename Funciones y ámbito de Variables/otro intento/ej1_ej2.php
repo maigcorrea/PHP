@@ -44,14 +44,31 @@
             return "En la cadena hay $contador letras \"a\"";
         }
 
+        //EJ 4
+        // function es_mayus($char){
+        //     return $char>='A' && $char<='Z'; //Devuelve 1 si la letra es Mayúscula
+        // }
         
+        function contar_mayusculas($pal){
+            $cont=0;
+            $tope=strlen($pal);
+
+            for($i=0;$i<$tope;$i++){
+                if(preg_match("'[A-Z]'",$pal[$i])){
+                    $cont++;     
+                }
+            }
+
+            return "La cadena contiene $cont mayúscula(s)";
+        }
 
 
         if(isset($_POST["env"])){
         
-            echo(corregir_primera_letra($_POST["cad"]));
-            echo(corregir_mayusculas($_POST["cad"]));
-            echo(contar_letra_a($_POST["cad"]));
+            // echo(corregir_primera_letra($_POST["cad"]));
+            // echo(corregir_mayusculas($_POST["cad"]));
+            // echo(contar_letra_a($_POST["cad"]));
+            echo (contar_mayusculas($_POST["cad"]));
 
         }else{
             echo '
