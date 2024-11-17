@@ -15,7 +15,7 @@
             return $cad;
         }
 
-        echo(corregir_primera_letra($_POST["cad"]));
+        
 
         //EJ 2
         function corregir_mayusculas(&$cad){
@@ -31,10 +31,28 @@
             return $cad;
         }
 
-        echo(corregir_mayusculas($_POST["cad"]));
+        //EJ 3
+        function contar_letra_a($cad){
+            $contador=0;
+            $tope=strlen($cad);
+
+            for($i=0;$i<$tope;$i++){
+                if($cad[$i]=="a"){
+                    $contador++;
+                }
+            }
+            return "En la cadena hay $contador letras \"a\"";
+        }
+
+        
+
 
         if(isset($_POST["env"])){
         
+            echo(corregir_primera_letra($_POST["cad"]));
+            echo(corregir_mayusculas($_POST["cad"]));
+            echo(contar_letra_a($_POST["cad"]));
+
         }else{
             echo '
                  <form action="#" method="post" enctype="multipart/form-data">
