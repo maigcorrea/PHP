@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+   
     <?php
         function corregir_primera_letra(&$cad){
             if(preg_match("'^[a-z]'",$cad)){
@@ -14,8 +15,7 @@
             return $cad;
         }
 
-        $saludo="hola mundo";
-        echo(corregir_primera_letra($saludo));
+        echo(corregir_primera_letra($_POST["cad"]));
 
         //EJ 2
         function corregir_mayusculas(&$cad){
@@ -31,8 +31,19 @@
             return $cad;
         }
 
-        $saludo="hoLA MunDo";
-        echo(corregir_mayusculas($saludo));
+        echo(corregir_mayusculas($_POST["cad"]));
+
+        if(isset($_POST["env"])){
+        
+        }else{
+            echo '
+                 <form action="#" method="post" enctype="multipart/form-data">
+                    <label for="cad">Indica una cadena de texto:</label><br>
+                    <input type="text" name="cad" id=""><br>
+                    <input type="submit" name="env" value="Enviar">
+                </form>    
+            ';
+        }
     ?>
 </body>
 </html>
