@@ -6,10 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-            <form action="#" method="post" enctype="multipart/form-data">
-                
-                <input type="submit" value="Enviar" name="env">
-            </form>
+            
 </body>
 </html>
 <?php
@@ -37,15 +34,31 @@
 
         public function __toString(){
             $str = "<img src='".$this->src."' border='".$this->border."px'>";
+            return $str;
         }
     }
 
     if(isset($_POST["env"])){
+        $img=new imagen($_POST["arch"],$_POST["borde"],"./img.".$_POST["arch"]);
 
+        $img ->__toString();
     }else{
+        
+        $dir=scandir("./");
+        $archivos=scandir("./img");
+
         echo '
             <form action="#" method="post" enctype="multipart/form-data">
+            <select name="arch">';
                 
+            foreach ($archivos as $archivo) {
+                echo "<option value=\"$archivo\">$archivo</option>";
+            }
+
+            echo '
+                </select>
+                <label for="borde">Introduce el tamaño del borde</label>
+                <input type="number" name="borde">
                 <input type="submit" value="Enviar" name="env">
             </form>
         ';
