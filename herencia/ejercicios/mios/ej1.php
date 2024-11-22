@@ -73,7 +73,7 @@
 
         class delfin extends Animal{
             private $longitud;
-            
+             
             public function __construct($n, $c, $fn,$lon){
                 parent::__construct($n, $c, $fn);
                 $this->longitud=$lon;
