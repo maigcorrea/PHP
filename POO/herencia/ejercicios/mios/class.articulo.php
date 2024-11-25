@@ -49,7 +49,7 @@
         }
 
         public function __toString(){
-            $str1=parent::__toString().". La rebaja es ".$this->rebaja."%: El descuento es ".$this->calculaDescuento()."€";
+            $str1=parent::__toString()."La rebaja es ".$this->rebaja."%.<br> El descuento es ".$this->calculaDescuento()."€";
             return $str1;
         }
     }

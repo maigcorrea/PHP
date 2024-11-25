@@ -15,8 +15,8 @@
 
         if(isset($_POST["env"])){
             $a2=new ArticuloRebajado($_POST["art"],$_POST["p"],$_POST["desc"]);
-            echo $a2->strPadre();
-            echo "<br>El precio del artículo rebajado es: <br>".$a2->precioRebajado()."€";
+            echo $a2->__toString();
+            echo "<br><br>El precio del artículo rebajado es: <br>".$a2->precioRebajado()."€";
         }else{
             echo '
                 <form action="#" method="post" enctype="multipart/form-data">
