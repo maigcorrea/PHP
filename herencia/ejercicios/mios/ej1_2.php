@@ -16,7 +16,7 @@
             echo($p->__toString());
         }else if($_POST["tipo"]=="delfin"){
             $d=new delfin($_POST["nom"],$_POST["color"],$_POST["fn"],$_POST["long"]);
-            $d->__toString();
+            echo($d->__toString());
         }
     }else{
         echo '

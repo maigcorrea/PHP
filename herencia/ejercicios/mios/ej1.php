@@ -90,7 +90,8 @@
             }
 
             public function __toString(){
-                $str=parent::__toString()." Es un delfin cuya longitud es ".$this->__get($longitud);
+                $str=parent::__toString()." Es un delfin cuya longitud es ".$this->longitud;
+                return $str;
             }
             
         }
