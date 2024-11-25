@@ -40,7 +40,7 @@
         }
 
         public function precioRebajado(){
-            $diferencia=parent::getPrecio()-$this->calculaDescuento();
+            $diferencia=$this->getPrecio()-$this->calculaDescuento();
             return $diferencia;
         }
 
