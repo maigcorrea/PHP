@@ -35,7 +35,7 @@
         }
 
         private function calculaDescuento(){
-            $desc=($this->rebaja*parent::getPrecio())/100;
+            $desc=($this->rebaja*$this->getPrecio())/100;
             return $desc;
         }
 
