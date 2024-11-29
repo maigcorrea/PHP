@@ -20,13 +20,15 @@
                             $db->query("Insert into usuarios values('".$_POST["nom"]."','".$_POST["pass"]."');");
                             echo "Usuario insertado correctamente";
                         }else{
-                            echo "El usuario ya existe";
+                            echo "El usuario ya   existe";
                             if(isset($_POST["env1"])){
                                 if($res=query('Select nombre from usuarios where nombre="'.$_POST["nom1"].'" and contrasenia="'.$_POST["pass1"].'";')){
                                     if($res->num_rows == 1){
                                         echo "Has iniciado sesión con exito";
+                                        // header("Location:3; inicioSesion.php"); //Se crean dos páginas php, una de inicio de sesión y otra de registro
                                     }else{
                                         echo "El nombre de usuario o la contraseña no coinciden";
+                                        // header("Location: registro.php?err=1")
                                     }
                                 }
                             }else{
