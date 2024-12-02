@@ -12,9 +12,18 @@
         $db=new mysqli('localhost','root','','ejercicios_pdf');
         $db->set_charset("utf8");
 
+
         $cli=new cliente($db);
 
+        // 1. Crear un documento PHP que muestre por pantalla la información de todos
+        // los clientes de la base de datos. No se deberá mostrar la contraseña del
+        // cliente.
+
         $cli->get_datos();
+
+        // 2. Crear un documento PHP que muestre por pantalla todas las ventas que se
+        // han realizado. Deberá mostrar de cada venta el nombre del producto y el
+        // nombre del cliente.
     ?>
 </body>
 </html>

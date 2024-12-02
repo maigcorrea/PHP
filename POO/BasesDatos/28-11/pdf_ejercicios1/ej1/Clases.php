@@ -56,6 +56,50 @@
 
 
 
+        class venta{
+            private $bd;
+            private $cliente;
+            private $producto;
+            private $fecha;
+            private $cantidad;
+            private $estado;
+
+            public function __construct($db,String $cli="",int $prod=0,date $fech="",int $cant=0,String $est=""){
+                // parent::__construct($bd);
+                $this->bd=$db;
+                $this->cliente=$cli;
+                $this->producto=$prod;
+                $this->fecha=$fech;
+                $this->cantidad=$cant;
+                $this->estado=$est;
+            }
+        
+            public function get_datos(){
+                $sent="SELECT v.* FROM cliente c,venta v,producto p where v.cliente=c.nif AND v.producto=p.cod;";
+
+                $cons=$this->bd->prepare($sent);
+                $cons->bind_result($this->cliente,$this->producto,$this->edad,$this->usuario,$this->pass);
+                $cons->execute();
+
+                while($cons->fetch()) echo $this;
+
+                $cons->close(); 
+            }
+
+
+            public function __toString(){
+                $str = " <br>NIF:".$this->nif."<br>Nombre:".$this->nombre."<br>Edad:".$this->edad."<br>Usuario:".$this->usuario."<br>";
+                return $str;
+            }
+
+
+            public function __destruct(){
+                $this->bd->close();
+            }
+
+
+        }
+
         
     ?>
 </body>
