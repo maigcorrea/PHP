@@ -19,11 +19,16 @@
         // los clientes de la base de datos. No se deberá mostrar la contraseña del
         // cliente.
 
-        $cli->get_datos();
+        // $cli->get_datos();
+        echo "-------------------------------------------------------------------------";
+
+
 
         // 2. Crear un documento PHP que muestre por pantalla todas las ventas que se
         // han realizado. Deberá mostrar de cada venta el nombre del producto y el
         // nombre del cliente.
+        $vent=new venta($db);
+        $vent->get_datos();
     ?>
 </body>
 </html>

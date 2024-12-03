@@ -64,7 +64,7 @@
             private $cantidad;
             private $estado;
 
-            public function __construct($db,String $cli="",int $prod=0,date $fech="",int $cant=0,String $est=""){
+            public function __construct($db,String $cli="",int $prod=0, $fech="",int $cant=0,String $est=""){
                 // parent::__construct($bd);
                 $this->bd=$db;
                 $this->cliente=$cli;
@@ -75,10 +75,10 @@
             }
         
             public function get_datos(){
-                $sent="SELECT v.* FROM cliente c,venta v,producto p where v.cliente=c.nif AND v.producto=p.cod;";
+                $sent="SELECT c.nombre,p.descripcion,v.fecha,v.cantidad,v.estado FROM cliente c,venta v,producto p where v.cliente=c.nif AND v.producto=p.cod;";
 
                 $cons=$this->bd->prepare($sent);
-                $cons->bind_result($this->cliente,$this->producto,$this->edad,$this->usuario,$this->pass);
+                $cons->bind_result($this->cliente,$this->producto,$this->fecha,$this->cantidad,$this->estado);
                 $cons->execute();
 
                 while($cons->fetch()) echo $this;
@@ -88,7 +88,7 @@
 
 
             public function __toString(){
-                $str = " <br>NIF:".$this->nif."<br>Nombre:".$this->nombre."<br>Edad:".$this->edad."<br>Usuario:".$this->usuario."<br>";
+                $str = " <br>Cliente:".$this->cliente."<br>Producto:".$this->producto."<br>Fecha:".$this->fecha."<br>Cantidad:".$this->cantidad."<br>Estado: ".$this->estado."<br>";
                 return $str;
             }
 
