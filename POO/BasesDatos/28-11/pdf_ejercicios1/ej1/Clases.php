@@ -112,6 +112,34 @@
 
         }
 
+
+        class producto{
+            private $cod;
+            private $descripcion;
+            private $precio;
+
+
+            public function __construct($db,$cod, $prod, $precio){
+                $this->bd=$db;
+                $this->codigo=$cod;
+                $this->descripcion=$prod;
+                $this->precio=$precio;
+            }
+
+            public function insertarProducto(){
+                $sent="INSERT INTO producto (descripcion,precio) VALUES('".$this->descripcion."','".$this->precio."');";
+
+                $cons=$this->bd->prepare($sent);
+                $cons->execute();
+
+
+                $cons->close();
+            }
+
+
+            
+        }
+
         
     ?>
 </body>
