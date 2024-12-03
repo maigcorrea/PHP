@@ -40,6 +40,18 @@
                 $cons->close(); 
             }
 
+            public function insertarCliente(){
+                $sent="INSERT INTO cliente VALUES('".$this->nif."','".$this->nombre."','".$this->edad."','".$this->usuario."','".$this->pass."');";
+
+                $cons=$this->bd->prepare($sent);
+                // $cons->bind_result($this->nif,$this->nombre,$this->edad,$this->usuario,$this->pass);
+                $cons->execute();
+
+                // while($cons->fetch()) echo $this;
+
+                $cons->close();
+            }
+
 
             public function __toString(){
                 $str = " <br>NIF:".$this->nif."<br>Nombre:".$this->nombre."<br>Edad:".$this->edad."<br>Usuario:".$this->usuario."<br>";
