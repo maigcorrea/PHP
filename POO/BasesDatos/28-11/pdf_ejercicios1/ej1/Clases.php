@@ -93,9 +93,9 @@
             }
 
 
-            public function __destruct(){
-                $this->bd->close();
-            }
+            // public function __destruct(){
+            //     $this->bd->close();
+            // }
 
 
         }

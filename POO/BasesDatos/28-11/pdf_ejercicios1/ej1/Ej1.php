@@ -29,6 +29,12 @@
         // nombre del cliente.
         $vent=new venta($db);
         $vent->get_datos();
+
+
+
+        // 3. Crear un documento PHP que por medio de formulario permita al usuario
+        // insertar un nuevo cliente. 
+
     ?>
 </body>
 </html>
