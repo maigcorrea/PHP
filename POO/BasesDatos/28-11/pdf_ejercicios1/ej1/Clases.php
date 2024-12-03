@@ -53,6 +53,29 @@
             }
 
 
+            public function sacarNomCliente(){
+                $nombres=[];
+
+                $sent="SELECT distinct nombre FROM cliente;";
+
+                $cons=$this->bd->prepare($sent);
+                $cons->bind_result($this->nombre);
+                
+                $cons->execute();
+
+                while($cons->fetch()){
+                    $nombres[]=$this->nombre;
+                    // echo $this;
+                    foreach ($nombres as  $value) {
+                        echo $value."<br>";
+                    }
+                };
+
+                $cons->close();
+            }
+
+
+
             public function __toString(){
                 $str = " <br>NIF:".$this->nif."<br>Nombre:".$this->nombre."<br>Edad:".$this->edad."<br>Usuario:".$this->usuario."<br>";
                 return $str;
