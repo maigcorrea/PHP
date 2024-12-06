@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
     <?php
         require_once "clases.php";
 
-        $db=new mysqli('localhost','root','','kahoot');
-        $db->set_charset("utf8");
+        try{
+            $db=new mysqli('localhost','root','','kahoot');
+            $db->set_charset("utf8");
+        }catch(Exception $e){
+            header("Location:formulario.php?mensaje=0");
+        }
+        
 
     //  $preg=new preguntas($db);
     //  $preg->get_pregunta();
@@ -23,6 +29,7 @@
             
 
 
+
         }else{
             echo '
                 <form action="" method="post" enctype="multipart/form-data">
@@ -31,7 +38,14 @@
                     <input type="submit" value="Enviar" name="env">
                 </form>
             ';
-    }
+        }
+
+
+        if(isset($_GET["mensaje"])){
+            if($_GET["mensaje"]==0) echo "<p class='errBd'>Error de conexión con la Base de Datos</p>";
+            if($_GET["mensaje"]==1) echo "<p class='msjExitoUsuario'>Usuario registrado correctamente</p>";
+            if($_GET["mensaje"]==2) echo "<p class='errYaRegistrado'>Error. El usuario ya está presente en la Base de Datos</p>";
+        }
     ?>
 </body>
 </html>
