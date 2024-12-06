@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+   
     <?php
         require_once "clases.php";
 
@@ -27,6 +27,16 @@
             $user=new usuarios($db,$_POST["nom"]);
             $user->insertarUsuarioTiempo();
             
+            if(isset($_POST["ej"])){
+                echo "Ej bien";
+            }else{
+                echo '
+                    <form action="" method="post">
+                        <input type="text" name="ej" placeholder="Ejemplo">
+                        <input type="submit" value="Enviar" name="ej">
+                    </form>
+                ';
+            }
 
 
 
@@ -43,7 +53,7 @@
 
         if(isset($_GET["mensaje"])){
             if($_GET["mensaje"]==0) echo "<p class='errBd'>Error de conexión con la Base de Datos</p>";
-            if($_GET["mensaje"]==1) echo "<p class='msjExitoUsuario'>Usuario registrado correctamente</p>";
+            // if($_GET["mensaje"]==1) echo "<p class='msjExitoUsuario'>Usuario registrado correctamente</p>";
             if($_GET["mensaje"]==2) echo "<p class='errYaRegistrado'>Error. El usuario ya está presente en la Base de Datos</p>";
         }
     ?>

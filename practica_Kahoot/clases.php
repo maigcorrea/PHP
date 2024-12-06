@@ -68,8 +68,8 @@
 
                     $cons->close();
 
-                    header("Location:cuestionario.php?mensaje=1");
-                    exit(); //El exit() sirve para asegurarse de que el script se detenga y no siga ejecutandose
+                    // header("Location:cuestionario.php?mensaje=1");
+                    // exit(); //El exit() sirve para asegurarse de que el script se detenga y no siga ejecutandose
                 }else{
                     header("Location:cuestionario.php?mensaje=2");
                     exit();
