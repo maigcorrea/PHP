@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   
     <?php
         require_once "clases.php";
 
@@ -19,8 +18,7 @@
         }
         
 
-    //  $preg=new preguntas($db);
-    //  $preg->get_pregunta();
+    
 
         //USUARIOS
         if(isset($_POST["env"])){
@@ -30,12 +28,15 @@
             if(isset($_POST["ej"])){
                 echo "Ej bien";
             }else{
-                echo '
-                    <form action="" method="post">
-                        <input type="text" name="ej" placeholder="Ejemplo">
-                        <input type="submit" value="Enviar" name="ej">
-                    </form>
-                ';
+                // echo '
+                //     <form action="" method="post">
+                //         <input type="text" name="ej" placeholder="Ejemplo">
+                //         <input type="submit" value="Enviar" name="ej">
+                //     </form>
+                // ';
+                $preg=new preguntas($db);
+                $preg->get_pregunta();
+
             }
 
 

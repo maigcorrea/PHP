@@ -13,6 +13,7 @@
             private $cod;
             private $enunciado;
             private $respuesta;
+            private $preguntas_mostradas=[];//Donde se van a almacenar las preguntas que ya se han mostrado, para que no se repitan
 
             public function __construct($db,$cod="", $enun="", $res=""){
                 $this->bd=$db;
@@ -22,21 +23,52 @@
             }
 
             public function get_pregunta(){
-                $sent="SELECT enunciado FROM preguntas;";
-
+                //Generar un número random
+                $sent="SELECT MAX(cod) from preguntas;";//Consultar cuantas preguntas hay en la bd para saber el límite máximo del num random
                 $cons=$this->bd->prepare($sent);
-                $cons->bind_result($this->enunciado);
                 $cons->execute();
+                $cons->bind_result($codMax);
+                $cons->fetch();
+                $cons->close();
+
+                if($codMax<1){//Comprobar que haya preguntas en la bd
+                    echo "No hay preguntas en la base de datos";
+                }else{
+                    
+                    //El número se sigue generando hasta que no esté incluido dentro del array de las preguntas que ya se han mostrado
+                    do{
+                        $codRandom=random_int(1,$codMax);//Generar el número random
+                    }while(in_array($codRandom,$this->preguntas_mostradas));//Se comprueba si el número generado está dentro del array con las preguntas mostradas, si devuelve true es que ya existe y por lo tanto se tiene qie generar otro número
+                    
+                    
 
 
-                while($cons->fetch()) echo $this;
+                    //Generar la consulta del enunciado a partir del num random
+                    $sent="SELECT enunciado FROM preguntas WHERE cod=?;";//El código es dinámico
 
-                $cons->close(); 
+                    $cons=$this->bd->prepare($sent);
+                    $cons->bind_param("i",$codRandom);
+                    $cons->execute();
+                    $cons->bind_result($this->enunciado);
+
+                    $cons->fetch();
+                    $this->preguntas_mostradas[]=$codRandom;//Añadir el código al array para comprobar que no se repita
+
+                    $cons->close(); 
+                    // Retornar el objeto con echo para mostrarlo con __toString()
+                    echo $this;
+                }
+  
             }
 
 
+            // public function pasar_str_numero(){
+
+            // }
+
+
             public function __toString(){
-                $str = " <br>".$this->enunciado;
+                $str = " <br>".$this->enunciado."<br><input type='text' name='res'><br><input type='submit' value='Enviar' name='env1'>";
                 return $str;
             }
         }
