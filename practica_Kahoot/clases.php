@@ -22,6 +22,11 @@
                 $this->respuesta=$res;
             }
 
+
+            public function get_cod(){
+                return $this->cod;
+            }
+
             public function get_pregunta(){
                 //Generar un número random
                 $sent="SELECT MAX(cod) from preguntas;";//Consultar cuantas preguntas hay en la bd para saber el límite máximo del num random
@@ -44,12 +49,12 @@
 
 
                     //Generar la consulta del enunciado a partir del num random
-                    $sent="SELECT enunciado FROM preguntas WHERE cod=?;";//El código es dinámico
+                    $sent="SELECT cod,enunciado FROM preguntas WHERE cod=?;";//El código es dinámico
 
                     $cons=$this->bd->prepare($sent);
                     $cons->bind_param("i",$codRandom);
                     $cons->execute();
-                    $cons->bind_result($this->enunciado);
+                    $cons->bind_result($this->cod, $this->enunciado);
 
                     $cons->fetch();
                     $this->preguntas_mostradas[]=$codRandom;//Añadir el código al array para comprobar que no se repita
@@ -65,13 +70,38 @@
             // public function pasar_str_numero(){
 
             // }
+            public function comprobarRespuesta($resUsuario, $codPregunta){
+                $sent = "SELECT respuesta FROM preguntas WHERE cod = ?;";
+
+                try{
+                    $cons=$this->bd->prepare($sent);
+                    $cons=bind_param("i",$codPregunta);
+                    $cons->execute();
+                    $cons=bind_result($resBd);
+                    $cons->fetch();
+
+                    if(trim($resBd)==trim($resUsuario)){
+                        // echo "Correcto, se pasa a la siguiente pregunta";
+                        return true;
+                    }else{
+                        // echo "Se repite la pregunta hasta que el usuario la acierte";
+                        return false;
+                    }
+                }catch(Exception $e){
+                    echo "Error al comprobar las respuestas";
+                }
+                
+            }
 
 
             public function __toString(){
-                $str = '<form action="#" method="post" enctype="multipart/form-data">'.
-                            $this->enunciado
-                            .'<input type="text" name="res"><br>
-                            <input type="submit" value="Enviar" name="env1">
+                $preguntasMostradasStr = implode(",", $this->preguntas_mostradas);//Pasar a cadena de texto el array con las preguntas que ya se han mostrado
+                $str = '<form action="#" method="post" enctype="multipart/form-data">
+                            <p>'. $this->enunciado.'</p>
+                            <input type="hidden" name="codPreguntaActual" value="'.$this->cod . '">
+                            <input type="hidden" name="preguntasMostradas" value="' . $preguntasMostradasStr . '">
+                            <input type="text" name="res"><br>
+                            <input type="submit" value="Enviar" name="env'.$this->cod.'">
                         </form>';
                 return $str;
             }

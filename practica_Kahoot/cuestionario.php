@@ -24,7 +24,8 @@
         if(isset($_POST["env"])){
             $user=new usuarios($db,$_POST["nom"]);
             $user->insertarUsuarioTiempo();
-        }else if(!isset($_POST["env1"])){
+
+        }else{
             echo '
                 <form action="#" method="post" enctype="multipart/form-data">
                     <label for="nom">Indica tu nombre:</label><br>
@@ -35,14 +36,26 @@
         }
 
 
-
-        if(isset($_POST["env1"]) && !isset($_POST["env"])){
-            $preg1=new preguntas($db);
-            $preg1->get_pregunta();
-        }else if(isset($_POST["env"])){
+        if(isset($_POST["env"])){
             $preg=new preguntas($db);
             $preg->get_pregunta();
         }
+
+        if(isset($_POST["env".$preg->get_cod()])){
+            if($preg->comprobarRespuesta($_POST['res'],$_POST['codPreguntaActual'])){
+                //Pasar a la siguiente pregunta
+            }else{
+                //Repetir pregunta
+            }
+        }
+
+        // if(isset($_POST["env1"]) && !isset($_POST["env"])){
+        //     $preg1=new preguntas($db);
+        //     $preg1->get_pregunta();
+        // }else if(isset($_POST["env"])){
+        //     $preg=new preguntas($db);
+        //     $preg->get_pregunta();
+        // }
 
 
         if(isset($_GET["mensaje"])){
