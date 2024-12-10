@@ -68,7 +68,11 @@
 
 
             public function __toString(){
-                $str = " <br>".$this->enunciado."<br><input type='text' name='res'><br><input type='submit' value='Enviar' name='env1'>";
+                $str = '<form action="#" method="post" enctype="multipart/form-data">'.
+                            $this->enunciado
+                            .'<input type="text" name="res"><br>
+                            <input type="submit" value="Enviar" name="env1">
+                        </form>';
                 return $str;
             }
         }

@@ -24,26 +24,9 @@
         if(isset($_POST["env"])){
             $user=new usuarios($db,$_POST["nom"]);
             $user->insertarUsuarioTiempo();
-            
-            if(isset($_POST["ej"])){
-                echo "Ej bien";
-            }else{
-                // echo '
-                //     <form action="" method="post">
-                //         <input type="text" name="ej" placeholder="Ejemplo">
-                //         <input type="submit" value="Enviar" name="ej">
-                //     </form>
-                // ';
-                $preg=new preguntas($db);
-                $preg->get_pregunta();
-
-            }
-
-
-
-        }else{
+        }else if(!isset($_POST["env1"])){
             echo '
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="#" method="post" enctype="multipart/form-data">
                     <label for="nom">Indica tu nombre:</label><br>
                     <input type="text" name="nom" id=""><br>
                     <input type="submit" value="Enviar" name="env">
@@ -52,10 +35,21 @@
         }
 
 
+
+        if(isset($_POST["env1"]) && !isset($_POST["env"])){
+            $preg1=new preguntas($db);
+            $preg1->get_pregunta();
+        }else if(isset($_POST["env"])){
+            $preg=new preguntas($db);
+            $preg->get_pregunta();
+        }
+
+
         if(isset($_GET["mensaje"])){
             if($_GET["mensaje"]==0) echo "<p class='errBd'>Error de conexión con la Base de Datos</p>";
             // if($_GET["mensaje"]==1) echo "<p class='msjExitoUsuario'>Usuario registrado correctamente</p>";
             if($_GET["mensaje"]==2) echo "<p class='errYaRegistrado'>Error. El usuario ya está presente en la Base de Datos</p>";
+            if($_GET["mensaje"]==3) echo "<p class='errUser'>El input está vacío</p>";
         }
     ?>
 </body>
