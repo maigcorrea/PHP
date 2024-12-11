@@ -72,7 +72,7 @@
             // }
             public function comprobarRespuesta($resUsuario, $codPregunta){
                 $sent = "SELECT respuesta FROM preguntas WHERE cod = ?;";
-
+                $comprobar;
                 try{
                     $cons=$this->bd->prepare($sent);
                     $cons=bind_param("i",$codPregunta);
@@ -80,13 +80,16 @@
                     $cons=bind_result($resBd);
                     $cons->fetch();
 
+                    
                     if(trim($resBd)==trim($resUsuario)){
                         // echo "Correcto, se pasa a la siguiente pregunta";
-                        return true;
+                        $comprobar=true;
                     }else{
                         // echo "Se repite la pregunta hasta que el usuario la acierte";
-                        return false;
+                        $comprobar=false;
                     }
+
+                    return $comprobar;
                 }catch(Exception $e){
                     echo "Error al comprobar las respuestas";
                 }

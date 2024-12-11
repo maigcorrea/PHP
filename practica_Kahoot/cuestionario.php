@@ -22,9 +22,11 @@
 
         //USUARIOS
         if(isset($_POST["env"])){
+            //Se inserta el usuario
             $user=new usuarios($db,$_POST["nom"]);
             $user->insertarUsuarioTiempo();
-
+            
+            //Salen las preguntas
         }else{
             echo '
                 <form action="#" method="post" enctype="multipart/form-data">
