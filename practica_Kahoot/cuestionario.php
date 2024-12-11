@@ -19,13 +19,13 @@
         
 
     
-
+        $preg=new preguntas($db);
         //USUARIOS
         if(isset($_POST["env"])){
             //Se inserta el usuario
             $user=new usuarios($db,$_POST["nom"]);
             $user->insertarUsuarioTiempo();
-            
+
             //Salen las preguntas
         }else{
             echo '
@@ -38,18 +38,17 @@
         }
 
 
-        if(isset($_POST["env"])){
-            $preg=new preguntas($db);
+        if(isset($_POST["env"])){            
             $preg->get_pregunta();
         }
 
-        if(isset($_POST["env".$preg->get_cod()])){
-            if($preg->comprobarRespuesta($_POST['res'],$_POST['codPreguntaActual'])){
-                //Pasar a la siguiente pregunta
-            }else{
-                //Repetir pregunta
-            }
-        }
+        // if(isset($_POST["env".$preg->get_cod()])){
+        //     if($preg->comprobarRespuesta($_POST['res'],$_POST['codPreguntaActual'])){
+        //         //Pasar a la siguiente pregunta
+        //     }else{
+        //         //Repetir pregunta
+        //     }
+        // }
 
         // if(isset($_POST["env1"]) && !isset($_POST["env"])){
         //     $preg1=new preguntas($db);
