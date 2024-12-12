@@ -61,20 +61,18 @@
   
             }
 
-
-            // public function pasar_str_numero(){
-
-            // }
-
-
             public function __toString(){
-                $str = '<form action="#" method="post" enctype="multipart/form-data">'.
-                            $this->enunciado
-                            .'<input type="text" name="res"><br>
+                $preguntasMostradasStr = implode(',', $this->preguntas_mostradas);
+                $str = '<form action="#" method="post" enctype="multipart/form-data">
+                            <p>'. $this->enunciado.'</p>
+                            <input type="hidden" name="codPA" value="'.$this->cod . '">
+                            <input type="hidden" name="pMostradas" value="' . $preguntasMostradasStr . '">
+                            <input type="text" name="res"><br>
                             <input type="submit" value="Enviar" name="env1">
                         </form>';
                 return $str;
             }
+
         }
 
 

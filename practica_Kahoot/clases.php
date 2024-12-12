@@ -13,14 +13,14 @@
             private $cod;
             private $enunciado;
             private $respuesta;
-            // private $preguntas_mostradas=[];//Donde se van a almacenar las preguntas que ya se han mostrado, para que no se repitan
+            private $preguntas_mostradas=[];//Donde se van a almacenar las preguntas que ya se han mostrado, para que no se repitan
 
             public function __construct($db,$cod="", $pm="", $enun="", $res=""){
                 $this->bd=$db;
                 $this->cod=$cod;
                 $this->enunciado=$enun;
                 $this->respuesta=$res;
-                // if($pm != "") $this->preguntas_mostradas = $pm;
+                if($pm != "") $this->preguntas_mostradas = $pm;
             }
 
 
@@ -82,7 +82,7 @@
                     $cons->fetch();
 
                     
-                    if(trim($resBd)==trim($resUsuario)){
+                    if(strtolower(trim($resBd))==strtolower(trim($resUsuario))){
                         // echo "Correcto, se pasa a la siguiente pregunta";
                         $comprobar=true;
                     }else{
