@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,13 +13,14 @@
             private $cod;
             private $enunciado;
             private $respuesta;
-            private $preguntas_mostradas=[];//Donde se van a almacenar las preguntas que ya se han mostrado, para que no se repitan
+            // private $preguntas_mostradas=[];//Donde se van a almacenar las preguntas que ya se han mostrado, para que no se repitan
 
-            public function __construct($db,$cod="", $enun="", $res=""){
+            public function __construct($db,$cod="", $pm="", $enun="", $res=""){
                 $this->bd=$db;
                 $this->cod=$cod;
                 $this->enunciado=$enun;
                 $this->respuesta=$res;
+                // if($pm != "") $this->preguntas_mostradas = $pm;
             }
 
 
@@ -57,7 +58,7 @@
                     $cons->bind_result($this->cod, $this->enunciado);
 
                     $cons->fetch();
-                    $this->preguntas_mostradas[]=$codRandom;//Añadir el código al array para comprobar que no se repita
+                    // $this->preguntas_mostradas = $codRandom." ";//Añadir el código al array para comprobar que no se repita
 
                     $cons->close(); 
                     // Retornar el objeto con echo para mostrarlo con __toString()
@@ -70,14 +71,14 @@
             // public function pasar_str_numero(){
 
             // }
-            public function comprobarRespuesta($resUsuario, $codPregunta){
+            public function comprobarRespuesta($resUsuario){
                 $sent = "SELECT respuesta FROM preguntas WHERE cod = ?;";
                 $comprobar;
                 try{
                     $cons=$this->bd->prepare($sent);
-                    $cons=bind_param("i",$codPregunta);
+                    $cons->bind_param("i",$this->cod);
                     $cons->execute();
-                    $cons=bind_result($resBd);
+                    $cons->bind_result($resBd);
                     $cons->fetch();
 
                     
@@ -98,13 +99,13 @@
 
 
             public function __toString(){
-                $preguntasMostradasStr = implode(",", $this->preguntas_mostradas);//Pasar a cadena de texto el array con las preguntas que ya se han mostrado
+                $preguntasMostradasStr = implode(',', $this->preguntas_mostradas);
                 $str = '<form action="#" method="post" enctype="multipart/form-data">
                             <p>'. $this->enunciado.'</p>
-                            <input type="hidden" name="codPreguntaActual" value="'.$this->cod . '">
-                            <input type="hidden" name="preguntasMostradas" value="' . $preguntasMostradasStr . '">
+                            <input type="hidden" name="codPA" value="'.$this->cod . '">
+                            <input type="hidden" name="pMostradas" value="' . $preguntasMostradasStr . '">
                             <input type="text" name="res"><br>
-                            <input type="submit" value="Enviar" name="env'.$this->cod.'">
+                            <input type="submit" value="Enviar" name="env1">
                         </form>';
                 return $str;
             }

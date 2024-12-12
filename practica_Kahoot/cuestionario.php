@@ -19,15 +19,18 @@
         
 
     
-        $preg=new preguntas($db);
+        
         //USUARIOS
         if(isset($_POST["env"])){
             //Se inserta el usuario
             $user=new usuarios($db,$_POST["nom"]);
             $user->insertarUsuarioTiempo();
 
+            $preg=new preguntas($db);           
+            $preg->get_pregunta();
+
             //Salen las preguntas
-        }else{
+        }else if(!isset($_POST['env1'])){
             echo '
                 <form action="#" method="post" enctype="multipart/form-data">
                     <label for="nom">Indica tu nombre:</label><br>
@@ -38,8 +41,11 @@
         }
 
 
-        if(isset($_POST["env"])){            
-            $preg->get_pregunta();
+        if(isset($_POST['env1'])){
+            $preg = new preguntas($db, $_POST['codPA'], $_POST['pMostradas']);
+
+            if($preg->comprobarRespuesta($_POST['res']))
+                $preg->get_pregunta();
         }
 
         // if(isset($_POST["env".$preg->get_cod()])){
