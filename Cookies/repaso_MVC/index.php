@@ -29,7 +29,7 @@
                 $nUsu=$_SESSION["usu"];
 
                 //PREGUNTA 1
-                //Se redirige a la página de bienvenida. En este caso se pone el require_once para insertar el código que haya en bienvenida.php dentro de este archivo, así aparecerá el contenido de bienvenida sin necesidad de redirigir.
+                //Se redirige a la página de bienvenida. En este caso se pone el require_once para insertar el código que haya en bienvenida.php dentro de este archivo,, así podemos utilizar la variable anterior en bienvenida.php, y así aparecerá el contenido de bienvenida sin necesidad de redirigir.
                 require_once("bienvenida.php");
             }else{
                 //PREGUNTA 1
