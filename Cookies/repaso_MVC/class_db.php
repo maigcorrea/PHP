@@ -27,5 +27,48 @@
             }
             return $existe;
         }
+
+
+        //Comprobar si el usuario ya está en la bd
+        public function checkUsuario(String $nom){
+            $sentencia="SELECT count(*) FROM usuarios WHERE usuario=?";
+
+            $consulta=$this->conn->prepare($sentencia);
+            $consulta->bind_param("s",$nom);
+            $consulta->bind_result($count);
+
+            $consulta->execute();
+            $consulta->fetch();
+            $consulta->close();
+
+            $existe=false;
+            if($count==1){
+                $existe=true;
+            }else{
+                $exite=false;
+            }
+
+            return $existe;
+        }
+
+        public function registrarUsu(String $nom, String $psw){
+            $sentencia="INSERT INTO usuarios VALUES (?,?)";
+    
+            $consulta=$this->conn->prepare($sentencia);
+            $consulta->bind_param("ss",$nom,$psw);
+    
+            $consulta->execute();
+    
+            //Comprobar si se ha insertado
+            $res=false;
+            if($consulta->affected_rows==1){
+                $res=true;
+            }
+            
+            return $res;
+            $consulta->close();
+        }
     }
+
+    
 ?>

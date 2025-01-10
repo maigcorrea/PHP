@@ -19,5 +19,7 @@
 
         <input type="submit" value="Enviar" name="fini">
     </form>
+
+    <p>¿No tienes cuenta?<a href="index.php?action=registro">Registrarse</a></p>
 </body>
 </html>
