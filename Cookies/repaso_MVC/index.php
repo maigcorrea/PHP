@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once("modelo.php");
+    require_once("class_db.php");
     require_once("conection.php");
 
     //Función para iniciar sesión
