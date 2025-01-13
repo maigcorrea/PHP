@@ -1,12 +1,13 @@
 <?php
-    
+    require_once("../../../../cred.php");
+
     // un modelo por tabla en la bd, es decir, un modelo por clase
     class db{
         private $conn;
 
         public function __construct(){//Mysqli $db
             // $this->conn=$db;
-            $this->conn= new mysqli("localhost","root","","cookies");
+            $this->conn= new mysqli("localhost",USU_CONN,PSW_CONN,"cookies");
         }
 
         public function comprobarCrede(String $nom, String $psw){
