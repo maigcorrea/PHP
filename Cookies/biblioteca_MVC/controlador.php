@@ -1,14 +1,33 @@
 <?php
 
-require_once("class_libro");
+require_once("./class_libro.php");
 //Al controlador se envía el título y el autor desde el formulario
     
 
-    function listar(){
+    function listar($mens=null){
         $libro=new libro();
-        $ej=$libro->listarLibros();
-
+        $arrLibros=$libro->listarLibros();
+        
         require_once('listar.php');
+    }
+
+
+    function borrar(){
+        $libro=new libro();
+        foreach($_POST as $key => $value){
+            if(preg_match("'^lib\d+'", $key)){
+                if($libro->borrarLibro($value)){
+                    // $mensaje="corr";
+                    $mensaje="<p>Borrado correctamente</p>";
+                    
+                }else{
+                    // $mensaje="err";
+                    $mensaje="<p>Error al borrar el libro</p>";
+                }
+            }
+        }
+
+        listar($mensaje);
     }
 
 
@@ -19,7 +38,8 @@ require_once("class_libro");
         //Se llama a la función que corresponda mediante la var anterior, puesto que esta almacena el valor del action, que coincide con el nombre de las funciones, dependiendo de su valor se llamará a una función o a otra
         $action();
     }else{
-
+        //LLamar por defecto a la función de listar(Cuando el action no exista, es decir, cuando se entre por primera vez a la página)
+        listar();
     }
 
 ?>
