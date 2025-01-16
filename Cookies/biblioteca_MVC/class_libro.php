@@ -51,10 +51,10 @@
         }
 
 
-       public function addLibro(){
-            $sentencia="INSERT INTO libro (titulo,autor,disponible) VALUES(?,?,?);";
+       public function addLibro($titulo,$autor){
+            $sentencia="INSERT INTO libro (titulo,autor) VALUES(?,?);";
             $consulta=$this->conn->getConection()->prepare($sentencia);
-            $consulta->bind_result("s,i,s",$this->titulo,$this->autor,$this->disp);
+            $consulta->bind_param("ss",$titulo,$autor);
             $consulta->execute();
 
             $anadido=false;

@@ -14,20 +14,20 @@
         }
     ?>
 
-    <form action="./controlador.php" method="post">
+    <form action="./controlador.php?action=anadir" method="post">
         <label for="nombre">Indica el nombre del libro:</label><br>
         <input type="text" name="nombre" id=""><br>
-        <select name="" id="">
+        <select name="autor" id="">
         <?php
             if(isset($arrAutores)){
                 foreach ($arrAutores as $key => $value) {
-                    echo "<option value='$value'>$value</option>";
+                    echo "<option value='$key'>$value</option>";
                 }
             }
         ?>
         </select><br>
 
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Enviar" name="add">
     </form>
 </body>
 </html>

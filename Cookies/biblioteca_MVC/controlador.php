@@ -35,18 +35,34 @@ require_once("./class_autor.php");
 
 
 
+    // function anadir(){
+    //     if(isset($_POST["add"])){
+    //         $libro=new libro();
+    //         if($libro->addLibro($_POST["nombre"],$_POST["autor"])){
+    //             $mensaje="<p>Añadido correctamente</p>";
+    //         }else{
+    //             $mensaje="<p>Error al borrar el libro</p>";
+    //         }
+    //     }
+
+    // }
+
     function anadir(){
-        listarEnAnadir();
-
-    }
-
-    function listarEnAnadir(){
         $autor=new autor();
         $arrAutores=$autor->getAutores();
 
         require_once("cabecera.html");
         require_once('anadir.php');
         require_once("pie.html");
+
+        if(isset($_POST["add"])){
+            $libro=new libro();
+            if($libro->addLibro($_POST["nombre"],$_POST["autor"])){
+                $mensaje="<p>Añadido correctamente</p>";
+            }else{
+                $mensaje="<p>Error al borrar el libro</p>";
+            }
+        }
     }
 
 
