@@ -67,7 +67,25 @@
 
             $consulta->close();
             return $anadido;
+       }
 
+
+       public function modificarLibro($titulo,$autor){
+            $sentencia="UPDATE libro WHERE nombre=? AND autor=?;";
+            $consulta=$this->conn->getConection()->prepare($sentencia);
+            $consulta->bind_param("ss",$titulo,$autor);
+            $consulta->execute();
+
+            $modificado=false;
+
+            if($consulta->affected_rows==1){
+                $modificado=true;
+            }else{
+                $modificado=false;
+            }
+
+            $consulta->close();
+            return $modificado;
        }
         
 

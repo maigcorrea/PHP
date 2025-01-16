@@ -67,6 +67,29 @@ require_once("./class_autor.php");
 
 
 
+    function modificar(){
+        foreach($_POST as $key => $value){
+            if(preg_match("'^lib\d+'", $key)){
+                $autor=new autor();
+                $arrAutores=$autor->getAutores();
+
+                require_once("cabecera.html");
+                require_once('anadir.php');
+                require_once("pie.html");
+                if(isset($_POST["add"])){
+                    //LLmar a la función que añade
+                }else{
+                    //Mostrar el formulario
+                }
+            }else{
+                echo "<p>No has seleccionado ningún libro</p>";
+            }
+        }
+
+    }
+
+
+
     function anadirLibro($titulo,$autor){
         $libro=new libro();
 
