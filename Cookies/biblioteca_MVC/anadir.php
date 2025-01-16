@@ -19,9 +19,9 @@
         <input type="text" name="nombre" id=""><br>
         <select name="" id="">
         <?php
-            if(isset($arrLibros)){
-                foreach ($arrLibros as $key => $value) {
-                    echo "<option value='$value[2]'>$value[1]</option>";
+            if(isset($arrAutores)){
+                foreach ($arrAutores as $key => $value) {
+                    echo "<option value='$value'>$value</option>";
                 }
             }
         ?>

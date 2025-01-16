@@ -33,7 +33,6 @@
 
 
 
-
         public function borrarLibro($id){
             $sentencia="DELETE FROM libro WHERE id=?;";
             $consulta=$this->conn->getConection()->prepare($sentencia);

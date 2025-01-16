@@ -1,6 +1,7 @@
 <?php
 
 require_once("./class_libro.php");
+require_once("./class_autor.php");
 //Al controlador se envía el título y el autor desde el formulario
     
 
@@ -40,8 +41,8 @@ require_once("./class_libro.php");
     }
 
     function listarEnAnadir(){
-        $libro=new libro();
-        $arrLibros=$libro->listarLibros();
+        $autor=new autor();
+        $arrAutores=$autor->getAutores();
 
         require_once("cabecera.html");
         require_once('anadir.php');
