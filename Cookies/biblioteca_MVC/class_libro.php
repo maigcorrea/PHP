@@ -7,6 +7,7 @@
         private $id;
         private $titulo;
         private $autor;
+        private $disp;
 
         public function __construct(){
             $this->conn=new bd();
@@ -15,7 +16,7 @@
         } 
 
         public function listarLibros(){
-            $sentencia="SELECT id,titulo,autor,disponible FROM libro";
+            $sentencia="SELECT id,titulo,autor.nombre,disponible FROM libro,autor";
             $consulta=$this->conn->getConection()->prepare($sentencia);
             
             $consulta->execute();
@@ -31,6 +32,8 @@
         }
 
 
+
+
         public function borrarLibro($id){
             $sentencia="DELETE FROM libro WHERE id=?;";
             $consulta=$this->conn->getConection()->prepare($sentencia);
@@ -44,14 +47,29 @@
                 $borrado=false;
             }
 
+            $consulta->close();
             return $borrado;
         }
 
-    //    public function addLibro(){
-    //         $sentencia="INSERT INTO libro (titulo,autor,disponible) VALUES(?,?,?);";
-    //         $consulta=$this->conn->prepare($sentencia);
-    //         $consulta->bind_result("s,i,s")
-    //    }
+
+       public function addLibro(){
+            $sentencia="INSERT INTO libro (titulo,autor,disponible) VALUES(?,?,?);";
+            $consulta=$this->conn->getConection()->prepare($sentencia);
+            $consulta->bind_result("s,i,s",$this->titulo,$this->autor,$this->disp);
+            $consulta->execute();
+
+            $anadido=false;
+
+            if($consulta->affected_rows==1){
+                $anadido=true;
+            }else{
+                $anadido=false;
+            }
+
+            $consulta->close();
+            return $anadido;
+
+       }
         
 
         

@@ -1,6 +1,3 @@
-<?php
-    require_once("cabecera.html");
-?>
 <body>
     <form action="./controlador.php" method="post">
     <?php
@@ -15,7 +12,7 @@
     ?>
         <input type="submit" value="Borrar" name="action">
         <input type="submit" value="Modificar" name="action">
-        <input type="submit" value="Añadir" name="action">
+        <input type="submit" value="Anadir" name="action">
     </form>
 
     <?php
@@ -29,6 +26,3 @@
     ?>
     
 </body>
-<?php
-    require_once("pie.html");
-?>

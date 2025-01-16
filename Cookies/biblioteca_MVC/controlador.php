@@ -8,7 +8,9 @@ require_once("./class_libro.php");
         $libro=new libro();
         $arrLibros=$libro->listarLibros();
         
+        require_once("cabecera.html");
         require_once('listar.php');
+        require_once("pie.html");
     }
 
 
@@ -28,6 +30,30 @@ require_once("./class_libro.php");
         }
 
         listar($mensaje);
+    }
+
+
+
+    function anadir(){
+        listarEnAnadir();
+
+    }
+
+    function listarEnAnadir(){
+        $libro=new libro();
+        $arrLibros=$libro->listarLibros();
+
+        require_once("cabecera.html");
+        require_once('anadir.php');
+        require_once("pie.html");
+    }
+
+
+
+    function anadirLibro($titulo,$autor){
+        $libro=new libro();
+
+
     }
 
 
