@@ -1,5 +1,5 @@
 <?php
-     require_once("../../../../cred.php");
+     require_once("../../../../../cred.php");
 
      class bd{
         private $conn;
