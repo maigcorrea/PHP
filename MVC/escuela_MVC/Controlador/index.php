@@ -20,9 +20,9 @@
             // }
 
             //Llamar a vista
-            // require_once("../Vista/cabecera.html");
-            // require_once("../Vista/vista2.php");
-            // require_once("../Vista/pie.html");
+            require_once("../Vista/cabecera.html");
+            require_once("../Vista/vista2.php");
+            require_once("../Vista/pie.html");
         }else{
             //Mensaje de error
             listarCursoModulo();
