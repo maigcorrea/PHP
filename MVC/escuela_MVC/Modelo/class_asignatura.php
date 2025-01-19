@@ -18,19 +18,39 @@
 
 
         public function get_cursos_modulos(){
-            $sentencia="SELECT modulo,curso FROM asignatura";
+            //Consulta para obtener los módulos
+            $sentencia="SELECT DISTINCT modulo FROM asignatura";
             $consulta=$this->conn->getConection()->prepare($sentencia);
-            $consulta->bind_result($modulo,$curso);
+            $consulta->bind_result($modulo);
             $consulta->execute();
 
-            $datos=[];
+            $modulos=[];
 
             while($consulta->fetch()){
-                $datos[$curso]=[$modulo];
+                $modulos[]=$modulo;
             }
 
             $consulta->close();
-            return $datos;
+
+            //Consulta para obtener los cursos
+            $sentencia="SELECT DISTINCT curso FROM asignatura";
+            $consulta=$this->conn->getConection()->prepare($sentencia);
+            $consulta->bind_result($curso);
+            $consulta->execute();
+
+            $cursos=[];
+
+            while($consulta->fetch()){
+                $cursos[]=$curso;
+            }
+
+            $consulta->close();
+            
+            //Retornar los dos resultados en un array
+            return [
+                'modulos'=>$modulos,
+                'cursos'=>$cursos,
+            ];
         }
 
 

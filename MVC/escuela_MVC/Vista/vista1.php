@@ -4,19 +4,19 @@
         <label for="modulo">MÓDULOS</label><br>
         <?php
             if(isset($datos)){
-                foreach ($datos as $key => $value) {
-                    echo "<input type='radio' name='modulo' value='$value[0]'>$value[0]<br>";
+                foreach ($datos['modulos'] as $value) {
+                    echo "<input type='radio' name='modulo' value='$value'>$value<br>";
                 }
             }else{
-                echo "<p>No hay array</p>";
+                echo "<p>No hay array de modulos</p>";
             }
         ?> 
         <label for="curso">CURSOS</label><br>
     
         <?php
             if(isset($datos)){
-                foreach ($datos as $key => $value) {
-                    echo "<input type='radio' name='curso' value='$key'>$key º<br>";
+                foreach ($datos['cursos'] as $value) {
+                    echo "<input type='radio' name='curso' value='$value'>$value º<br>";
                 }
             }else{
                 echo "<p>No hay array</p>";
