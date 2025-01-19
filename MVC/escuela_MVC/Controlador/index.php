@@ -1,5 +1,6 @@
 <?php
     require_once("../Modelo/class_asignatura.php");
+    require_once("../Modelo/class_alumno.php");
 
     function listarCursoModulo(){
         $asig=new asignatura();
@@ -10,7 +11,7 @@
         require_once("../Vista/pie.html");
     }
 
-    function calificar(){
+    function asignaturas(){
         if(isset($_POST)){
             // verAsignaturayAlumnos()
             $asig=new asignatura();
@@ -21,12 +22,31 @@
 
             //Llamar a vista
             require_once("../Vista/cabecera.html");
-            require_once("../Vista/vista2.php");
+            require_once("../Vista/vista1.php");
             require_once("../Vista/pie.html");
         }else{
             //Mensaje de error
             listarCursoModulo();
         }
+    }
+
+
+    function calificar(){
+        //Aparece otra vista con los alumnos y botón de enviar
+        $alum=new alumno();
+        $alumnos=$alum->get_alumnos($_POST["asig"]);
+
+        require_once("../Vista/cabecera.html");
+        require_once("../Vista/vista2.php");
+        require_once("../Vista/pie.html");
+    }
+
+
+    function poner_nota(){
+        //Llamar a la funcion de insert
+        $exped=new expediente();
+
+        $exped->insertarNota($_POST["alum"], $_POST["nota"]);
     }
     
 

@@ -1,17 +1,20 @@
 <body>
     <form action="../Controlador/index.php" method="post">
-        <label for="">Elige la Asignatura:</label><br>
-        <select name="" id="">
+        <label for="">Elige el alumno:</label><br>
+        <select name="alum">
     <?php
-        if(isset($datosAsig)){
-            foreach ($datosAsig as $key => $value) {
-                echo "<option value='$key'>$value</option>";
+        if(isset($alumnos)){
+            foreach ($alumnos as $key => $value) {
+                echo "<option value='$key'>$value[0]</option>";
             }
         }else{
             echo "No hay array";
         }
     ?>
-        <!-- </select> -->
-         <button>cerq</button>
+        </select><br><br>
+        <label for="nota">Introduce la nota</label><br>
+        <input type="number" name="nota"><br><br>
+
+        <input type="submit" value="Poner_nota" name="action">
     </form>
 </body>

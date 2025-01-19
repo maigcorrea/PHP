@@ -22,7 +22,23 @@
                 echo "<p>No hay array</p>";
             }
         ?> 
-            <input type="submit" value="Calificar" name="action">
-            <input type="submit" value="Ver" name="action">
+
+
+    <?php
+        if(isset($datosAsig)){
+            echo '<label for="">Elige la Asignatura:</label><br>
+                    <select name="asig">';
+            foreach ($datosAsig as $key => $value) {
+                echo "<option value='$key'>$value</option>";
+            }
+            echo "</select><br>";
+            echo '<input type="submit" value="Calificar" name="action">
+            <input type="submit" value="Ver" name="action">';
+        }else{
+            echo '<input type="submit" value="asignaturas" name="action">';
+        }
+    ?><br>
+            
+            
         </form>
 </body>

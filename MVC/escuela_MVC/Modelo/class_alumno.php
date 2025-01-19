@@ -16,8 +16,21 @@
         }
 
 
-        public function get_alumnos($modulo,$curso){
-            $sentencia="SELECT a.id,a.nombre FROM alumno a, expediente e WHERE a.id=e.alumno AND "
+        public function get_alumnos($asig){
+            $sentencia="SELECT DISTINCT a.id,a.nombre FROM alumno a, expediente e WHERE a.id=e.alumno AND e.asignatura=?;";
+            $consulta=$this->conn->getConection()->prepare($sentencia);
+            $consulta->bind_param("i",$asig);
+            $consulta->bind_result($id,$nombre);
+            $consulta->execute();
+
+            $alumnos=[];
+
+            while($consulta->fetch()){
+                $alumnos[$id]=[$nombre];
+            }
+
+            $consulta->close();
+            return $alumnos;
         }
     }
 
