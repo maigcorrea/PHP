@@ -34,6 +34,24 @@
         }
 
 
+        public function get_asignaturas($modulo,$curso){
+            $sentencia="SELECT id,nombre FROM asignatura WHERE modulo=? AND curso=?";
+            $consulta=$this->conn->getConection()->prepare($sentencia);
+            $consulta->bind_param("si",$modulo,$curso);
+            $consulta->bind_result($id,$nombre);
+            $consulta->execute();
+
+            $datosAsig=[];
+
+            while($consulta->fetch()){
+                $datosAsig[$id]=$nombre;
+            }
+            
+            $consulta->close();
+            return $datosAsig;
+        }
+
+
 
     }
 

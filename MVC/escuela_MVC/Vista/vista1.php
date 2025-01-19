@@ -1,23 +1,22 @@
 
 <body>
-    
-    <form action="./controlador.php" method="post">
-        <label for="">MÓDULOS</label><br>
+    <form action="../Controlador/index.php" method="post">
+        <label for="modulo">MÓDULOS</label><br>
         <?php
             if(isset($datos)){
                 foreach ($datos as $key => $value) {
-                    echo "<input type='checkbox' name='lib$key' value='$key'>$value[0]<br>";
+                    echo "<input type='radio' name='modulo' value='$value[0]'>$value[0]<br>";
                 }
             }else{
                 echo "<p>No hay array</p>";
             }
         ?> 
-        <label for="">CURSOS</label><br>
+        <label for="curso">CURSOS</label><br>
     
         <?php
             if(isset($datos)){
                 foreach ($datos as $key => $value) {
-                    echo "<input type='checkbox' name='lib$key' value='$key'>$key º<br>";
+                    echo "<input type='radio' name='curso' value='$key'>$key º<br>";
                 }
             }else{
                 echo "<p>No hay array</p>";
