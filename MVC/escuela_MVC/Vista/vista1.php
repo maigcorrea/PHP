@@ -32,8 +32,12 @@
                 echo "<option value='$key'>$value</option>";
             }
             echo "</select><br>";
-            echo '<input type="submit" value="Calificar" name="action">
-            <input type="submit" value="Ver" name="action">';
+            ?>
+            <input type="submit" value="Calificar" name="action">
+            <input type="submit" value="Ver_expediente" name="action">
+            <input type="hidden" name="modulo" value="<?php if(isset($modulo)) echo $modulo; ?>">
+        
+        <?php
         }else{
             echo '<input type="submit" value="asignaturas" name="action">';
         }

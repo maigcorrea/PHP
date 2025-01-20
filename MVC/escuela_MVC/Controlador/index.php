@@ -15,6 +15,7 @@
     function asignaturas(){
         if(isset($_POST)){
             // verAsignaturayAlumnos()
+            $modulo=$_POST["modulo"];
             $asig=new asignatura();
             $datosAsig=$asig->get_asignaturas($_POST["modulo"], $_POST["curso"]);
             // foreach ($datosAsig as $key => $value) {
@@ -61,6 +62,19 @@
 
         require_once("../Vista/cabecera.html");
         require_once("../Vista/vista2.php");
+        require_once("../Vista/pie.html");
+    }
+
+
+    function ver_expediente(){
+        //Aparece otra vista con los alumnos 
+        // $modulo=$_POST["modulo"];
+
+        $exped=new expediente();
+        $alumnosExpediente=$exped->verExpediente($_POST["modulo"]);
+
+        require_once("../Vista/cabecera.html");
+        require_once("../Vista/vista3.php");
         require_once("../Vista/pie.html");
     }
     

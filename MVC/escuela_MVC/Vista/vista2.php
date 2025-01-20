@@ -13,7 +13,7 @@
     ?>
         </select><br><br>
         <label for="nota">Introduce la nota</label><br>
-        <input type="number" name="nota"><br><br>
+        <input type="number" step="0.1" name="nota"><br><br>
         <input type="hidden" name="asignat" value=<?php if (isset($asignatura)) echo "$asignatura" ?>>
 
         <input type="submit" value="Poner_nota" name="action">
