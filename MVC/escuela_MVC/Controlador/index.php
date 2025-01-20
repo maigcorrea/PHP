@@ -1,6 +1,7 @@
 <?php
     require_once("../Modelo/class_asignatura.php");
     require_once("../Modelo/class_alumno.php");
+    require_once("../Modelo/class_expediente.php");
 
     function listarCursoModulo(){
         $asig=new asignatura();
@@ -33,8 +34,12 @@
 
     function calificar(){
         //Aparece otra vista con los alumnos y botón de enviar
+        $asignatura=$_POST["asig"];
         $alum=new alumno();
         $alumnos=$alum->get_alumnos($_POST["asig"]);
+        
+
+        // echo "<p>$asignatura</p>";
 
         require_once("../Vista/cabecera.html");
         require_once("../Vista/vista2.php");
@@ -46,7 +51,17 @@
         //Llamar a la funcion de insert
         $exped=new expediente();
 
-        $exped->insertarNota($_POST["alum"], $_POST["nota"]);
+        $insertado=$exped->insertarNota($_POST["alum"], $_POST["asignat"], $_POST["nota"]);
+
+        if($insertado){
+            $mensaje="insertado Correctamente";
+        }else{
+            $mensaje="Fallo al insertar";
+        }
+
+        require_once("../Vista/cabecera.html");
+        require_once("../Vista/vista2.php");
+        require_once("../Vista/pie.html");
     }
     
 
